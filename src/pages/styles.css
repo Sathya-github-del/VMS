@@ -1,0 +1,192 @@
+/* Common Colors */
+:root {
+    --primary: #3b82f6;
+    --success: #10b981;
+    --danger: #ef4444;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --bg-light: #f9fafb;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.visitor-form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Webcam Container */
+.webcam-section {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-light);
+}
+
+.webcam-preview {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+
+.capture-photo-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 16px;
+    background: var(--text-light);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Panel Styles */
+.panel-container {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.panel-title {
+    font-size: 24px;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Visitor Card */
+.visitor-card {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: white;
+}
+
+.visitor-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.visitor-details {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+/* Status Badges */
+.status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-pending {
+    background: #fff7ed;
+    color: #9a3412;
+}
+
+.status-approved {
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.status-rejected {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .visitor-form {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .webcam-preview {
+        max-width: 100%;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.gap-10 {
+    gap: 10px;
+}
