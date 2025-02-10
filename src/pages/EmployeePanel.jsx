@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVisitors } from '../context/VisitorContext';
+import { useAuth } from '../hooks/useAuth';
 import NotificationBell from '../components/NotificationBell';
 import { employees } from '../data/employees';
 import '../styles.css';
@@ -15,6 +16,7 @@ const EmployeePanel = () => {
     const [employeeData, setEmployeeData] = useState(null);
     const [selectedVisitor, setSelectedVisitor] = useState(null);
     const [currentEmployee, setCurrentEmployee] = useState(null);
+    const { logout } = useAuth();
 
     // Load employee data first
     useEffect(() => {
@@ -60,6 +62,12 @@ const EmployeePanel = () => {
         setSelectedVisitor(null);
     };
 
+    const handleLogout = () => {
+        if (window.confirm('Are you sure you want to logout?')) {
+            logout();
+        }
+    };
+
     if (error) {
         return <div className="panel">Error: {error}</div>;
     }
@@ -75,9 +83,14 @@ const EmployeePanel = () => {
     return (
         <div className="panel">
             <div className="panel-header">
-                <h2 className="panel-title">
-                    Employee Panel - {currentEmployee.name} ({currentEmployee.department})
-                </h2>
+                <div className="panel-title-group">
+                    <h2 className="panel-title">
+                        Employee Panel - {currentEmployee.name} ({currentEmployee.department})
+                    </h2>
+                    <button onClick={handleLogout} className="btn btn-danger">
+                        Logout
+                    </button>
+                </div>
                 <NotificationBell />
             </div>
 

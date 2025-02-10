@@ -32,6 +32,17 @@
     margin-bottom: 20px;
 }
 
+.panel-title-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.panel-title-group .btn-danger {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
 /* Form Styles */
 .form-group {
     margin-bottom: 15px;
