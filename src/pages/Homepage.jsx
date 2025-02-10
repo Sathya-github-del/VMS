@@ -80,7 +80,7 @@ const Homepage = () => {
         <div className="container">
             <h1 className="page-title">Guest Management</h1>
             <div className='logo' style={{ textAlign: 'center' }}>
-                <img src='src/assets/dynpro.jpg' alt='website logo' />
+                <img src='public/dynpro.jpg' alt='website logo' />
             </div>
 
             {/* Reset Data Button */}
