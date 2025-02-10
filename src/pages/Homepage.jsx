@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import '../styles.css';
 import { employees } from '../data/employees';
-import { useState } from 'react';
+import '../styles.css';
+
 const Homepage = () => {
     const navigate = useNavigate();
-    const { login, userType } = useAuth();
+    const { login } = useAuth();
     const [showEmployeeModal, setShowEmployeeModal] = useState(false);
     const [showResetModal, setShowResetModal] = useState(false);
 
@@ -35,7 +36,7 @@ const Homepage = () => {
             title: "Employee Panel",
             icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
             description: "Review and approve visitors",
-            path: "/employee",
+            path: "/employee-login",
             role: "employee"
         },
         {
@@ -57,21 +58,13 @@ const Homepage = () => {
         }
     };
 
-    const handleEmployeeLogin = (employeeId) => {
-        login(`employee-${employeeId}`);
-        setShowEmployeeModal(false);
-    };
-
     const handleResetData = () => {
         if (window.confirm('Are you sure? This will delete ALL visitor data and cannot be undone!')) {
-            // Clear all localStorage data
             localStorage.removeItem('visitors');
             localStorage.removeItem('notifications');
             localStorage.removeItem('visitorProfiles');
             localStorage.removeItem('employeeData');
             localStorage.removeItem('userType');
-
-            // Reload the page to reset all states
             window.location.reload();
         }
     };
@@ -79,11 +72,10 @@ const Homepage = () => {
     return (
         <div className="container">
             <h1 className="page-title">Guest Management</h1>
-            <div className='logo' style={{ textAlign: 'center' }}>
-                <img src='public/dynpro.jpg' alt='website logo' />
+            <div className='logo' style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <img src='src/assets/dynpro.jpg' alt='website logo' style={{ maxWidth: '200px' }} />
             </div>
 
-            {/* Reset Data Button */}
             <div className="text-center mb-4">
                 <button
                     onClick={() => setShowResetModal(true)}
@@ -94,13 +86,13 @@ const Homepage = () => {
             </div>
 
             <div className="cards-grid">
-                {cards.filter(card => !card.role || !userType).map((card, index) => (
+                {cards.map((card, index) => (
                     <div
                         key={index}
                         className="card hover-card"
                         onClick={() => handleCardClick(card)}
                     >
-                        <div className="card-icon">
+                        <div className="card-icon"></div>
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={card.icon} />
                             </svg>
@@ -109,58 +101,35 @@ const Homepage = () => {
                         <p className="card-text">{card.description}</p>
                     </div>
                 ))}
-            </div>
-
-            {/* Reset Confirmation Modal */}
-            {showResetModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h3>Reset All Data</h3>
-                        <p className="text-danger">Warning: This action cannot be undone!</p>
-                        <p>This will delete all:</p>
-                        <ul className="reset-list">
-                            <li>Visitor records</li>
-                            <li>Notifications</li>
-                            <li>User sessions</li>
-                            <li>Stored profiles</li>
-                        </ul>
-                        <div className="modal-actions">
-                            <button
-                                onClick={handleResetData}
-                                className="btn btn-danger"
-                            >
-                                Yes, Reset Everything
-                            </button>
-                            <button
-                                onClick={() => setShowResetModal(false)}
-                                className="btn btn-secondary"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {showEmployeeModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h3>Select Employee</h3>
-                        <select
-                            className="form-input"
-                            onChange={(e) => handleEmployeeLogin(e.target.value)}
-                        >
-                            <option value="">Select your name</option>
-                            {employees.map(emp => (
-                                <option key={emp.id} value={emp.id}>
-                                    {emp.name} - {emp.department}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-            )}
         </div>
+
+            {/* Reset Modal */ }
+    {
+        showResetModal && (
+            <div className="modal">
+                <div className="modal-content">
+                    <h3>Reset All Data</h3>
+                    <p className="text-danger">Warning: This action cannot be undone!</p>
+                    <p>This will delete all:</p>
+                    <ul className="reset-list">
+                        <li>Visitor records</li>
+                        <li>Notifications</li>
+                        <li>User sessions</li>
+                        <li>Stored profiles</li>
+                    </ul>
+                    <div className="modal-actions">
+                        <button onClick={handleResetData} className="btn btn-danger">
+                            Yes, Reset Everything
+                        </button>
+                        <button onClick={() => setShowResetModal(false)} className="btn btn-secondary">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+        </div >
     );
 };
 
